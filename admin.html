@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+        <div class="header-right">
+            <button class="email-button" onclick="redirectToMail()">✉️</button>
+        </div>
+    </header>
+    <div class="profile">
+        <img src="images/avatar.png" alt="Profile Picture" class="profile-picture">
+        <p class="profile-name">ФИО</p>
+    </div>
+    <div class="admin-container">
+        <div class="registers">
+            <div class="filters">
+                <span class="active" onclick="filterApplications('all')">Поданные заявки</span>
+                <span onclick="filterApplications('rejected')">Отклоненные</span>
+                <span onclick="filterApplications('approved')">Одобренные</span>
+            </div>
+            <table class="register-table">
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Номер свидетельства</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название 1</a></td>
+                        <td>123456789</td>
+                        <td>XX/XX/24</td>
+                    </tr>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название 2</a></td>
+                        <td>----------</td>
+                        <td>XX/XX/24</td>
+                    </tr>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название 3</a></td>
+                        <td>987654321</td>
+                        <td>XX/XX/24</td>
+                    </tr>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название 4</a></td>
+                        <td>----------</td>
+                        <td>XX/XX/24</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dashboard-buttons">
+            <button onclick="window.location.href='index.html'" class="btn">На главную</button>
+            <button onclick="window.location.href='experts.html'" class="btn">Список экспертов</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 ГрГУ имени Янки Купалы</p>
+    </footer>
+
+    <script>
+        function filterApplications(type) {
+            const rows = document.querySelectorAll('.register-table tbody tr');
+            rows.forEach(row => {
+                const certificateCell = row.cells[1];
+                const certificateValue = certificateCell.textContent.trim();
+
+                if (type === 'all') {
+                    row.style.display = '';
+                } else if (type === 'rejected') {
+                    row.style.display = certificateValue === '----------' ? '' : 'none';
+                } else if (type === 'approved') {
+                    row.style.display = certificateValue !== '----------' ? '' : 'none';
+                }
+            });
+
+            // Обновляем активный фильтр
+            const filterButtons = document.querySelectorAll('.filters span');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        function redirectToMail() {
+            // Переход на страницу почты
+            window.location.href = 'mail.html'; // Убедитесь, что mail.html существует
+        }
+    </script>
+</body>
+</html>

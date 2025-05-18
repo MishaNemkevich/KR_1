@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+        <div class="header-right">
+            <button class="email-button" onclick="redirectToMail()">✉️</button>
+        </div>
+    </header>
+    <div class="profile">
+        <img src="images/avatar.png" alt="Profile Picture" class="profile-picture">
+        <p class="profile-name">ФИО</p>
+    </div>
+    <div class="dashboard-container">
+        <div class="registers">
+            <h2>Ваши регистры ИР</h2>
+            <table class="register-table">
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Номер свидетельства</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название......</a></td>
+                        <td>123456789</td>
+                        <td>Подтвержден</td>
+                    </tr>
+                    <tr>
+                        <td><a href="details.html" class="rectangle">Название......</a></td>
+                        <td>----------</td>
+                        <td>В обработке</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dashboard-buttons">
+            <button onclick="window.location.href='index.html'" class="btn">На главную</button>
+            <button onclick="openModal()" class="btn">Подать заявку</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 ГрГУ имени Янки Купалы</p>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div id="selectionModal" class="modal">
+        <div class="modal-content">
+            <h2>Выберите тип заявки</h2>
+            <button class="modal-button" onclick="redirectToPage('tsumk')">ЦУМК</button>
+            <button class="modal-button" onclick="redirectToPage('eumk')">ЭУМК</button>
+            <button class="modal-close" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Переход к почте
+        function redirectToMail() {
+            window.location.href = 'mail.html';
+        }
+
+        // Открытие модального окна
+        function openModal() {
+            document.getElementById('selectionModal').style.display = 'flex';
+        }
+
+        // Закрытие модального окна
+        function closeModal() {
+            document.getElementById('selectionModal').style.display = 'none';
+        }
+
+        // Перенаправление в зависимости от выбора
+        function redirectToPage(type) {
+            if (type === 'tsumk') {
+                window.location.href = 'tsumk-application.html'; // Укажите реальный URL для ЦУМК
+            } else if (type === 'eumk') {
+                window.location.href = 'eumk-application.html'; // Укажите реальный URL для ЭУМК
+            }
+        }
+    </script>
+</body>
+</html>

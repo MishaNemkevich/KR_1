@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Почта заявок</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="mail-container">
+        <!-- Фильтры -->
+        <div class="filters">
+            <span class="active" onclick="filterMail('incoming', this)">Входящие</span>
+            <span onclick="filterMail('sent', this)">Отправленные</span>
+        </div>
+
+        <!-- Входящие -->
+        <div class="mail-box active" id="incoming">
+            <div class="mail-item">
+                <span class="span-text">Заявка на экспертизу ЭУМК</span>
+                <span class="span-text">XX/XX/24</span>
+                <a href="eumk-expert.html" class="rectangle_mail">Открыть</a>
+            </div>
+            <div class="mail-item">
+                <span class="span-text">Заявка на экспертизу ЦУМК</span>
+                <span class="span-text">XX/XX/24</span>
+                <a href="tsumk-expert.html" class="rectangle_mail">Открыть</a>
+            </div>
+        </div>
+
+        <!-- Отправленные -->
+        <div class="mail-box" id="sent">
+            <div class="mail-item">
+                <span>Заявка на утверждение</span>
+                <span>XX/XX/24</span>
+                <span>Отправлено</span>
+            </div>
+            <div class="mail-item">
+                <span>Заявка на утверждение</span>
+                <span>XX/XX/24</span>
+                <span>Отправлено</span>
+            </div>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="buttons">
+            <button class="btn" onclick="window.location.href='index.html'">На главную</button>
+            <button class="btn" onclick="window.location.href='dashboard.html'">В личный кабинет</button>
+        </div>
+    </div>
+    <footer>
+        © 2024 ГрГУ имени Янки Купалы
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function filterMail(type, element) {
+            // Скрываем все контейнеры
+            document.querySelectorAll('.mail-box').forEach(box => {
+                box.classList.remove('active');
+            });
+
+            // Показываем выбранный контейнер
+            document.getElementById(type).classList.add('active');
+
+            // Обновляем активный класс у фильтров
+            document.querySelectorAll('.filters span').forEach(span => {
+                span.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

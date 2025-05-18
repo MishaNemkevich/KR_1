@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка на утверждение ЦУМК</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Заявка на утверждение цифрового учебно-методического комплекса</h1>
+        <form class="application-form">
+            <div class="form-group">
+                <label for="authors">Автор(ы) ЦУМК:</label>
+                <div class="input-group">
+                    <input type="text" id="authors" placeholder="ФИО, ученая степень, наименование структурного подразделения, должность">
+                    <button type="button" class="add-author-button">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="discipline">Название учебной дисциплины:</label>
+                <input type="text" id="discipline">
+            </div>
+            <div class="form-group">
+                <label for="specialty">Название специальности:</label>
+                <input type="text" id="specialty">
+            </div>
+            <div class="form-group">
+                <label for="specialty-code">Код специальности:</label>
+                <input type="text" id="specialty-code">
+            </div>
+            <div class="form-group2">
+                <label for="protocol">Выписка из протокола заседания кафедры с рекомендацией к утверждению:</label>
+                <input type="file" id="protocol">
+            </div>
+            <div class="form-group2">
+                <label for="review">Рецензия(ии):</label>
+                <input type="file" id="review">
+            </div>
+            <div class="form-group2">
+                <label for="explanatory-note">Пояснительная записка:</label>
+                <input type="file" id="explanatory-note">
+            </div>
+            <div class="form-group2">
+                <label for="tsumk">ЦУМК:</label>
+                <input type="file" id="tsumk">
+            </div>
+            <button type="submit" class="submit-button">Подать заявку</button>
+        </form>
+    </div>
+    <footer>
+        <p>© 2024 ГрГУ имени Янки Купалы</p>
+    </footer>
+    <script src="tsumk-check.js"></script>
+</body>
+</html>

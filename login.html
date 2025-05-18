@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+    </header>
+    <div class="login-container">
+        <h1>Вход в личный кабинет</h1>
+        <form id="loginForm">
+            <label for="login">Логин</label>
+            <input type="text" id="login" name="login" required>
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required>
+            <p id="error-message"></p>
+            <button type="submit" class="btn">Войти</button>
+        </form>
+        <button onclick="goToHomePage()" class="btn exit-btn">На главную</button>
+    </div>
+    <footer>
+        © 2024 ГрГУ имени Янки Купалы
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+            
+            const login = document.getElementById('login').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error-message');
+    
+            if (login === 'admin' && password === 'admin') {
+                window.location.href = "admin.html"; // Переход в кабинет администратора
+            } else if (login === 'guest' && password === 'guest') {
+                window.location.href = "dashboard.html"; // Переход в кабинет пользователя
+            } else {
+                errorMessage.textContent = "Некорректный логин или пароль!";
+                errorMessage.style.color = "red";
+            }
+        });
+    
+        function goToHomePage() {
+            window.location.href = "index.html"; // Переход на главную страницу
+        }
+    </script>
+</body>
+</html>
+

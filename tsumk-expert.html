@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспертное заключение на ЦУМК</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Экспертное заключение на ЦУМК</h1>
+        <form class="expertise-form">
+            <div class="form-group">
+                <label for="discipline">Название учебной дисциплины:</label>
+                <input type="text" id="discipline">
+            </div>
+            <div class="form-group">
+                <label for="specialty">Название специальности:</label>
+                <input type="text" id="specialty">
+            </div>
+            <div class="form-group">
+                <label for="specialty-code">Код специальности:</label>
+                <input type="text" id="specialty-code">
+            </div>
+            <div class="form-group">
+                <label for="authors">Автор(ы) ЦУМК:</label>
+                <input type="text" id="authors" placeholder="ФИО, ученая степень, наименование структурного подразделения, должность">
+            </div>
+            <div class="form-group2">
+                <label for="protocol">Выписка из протокола заседания кафедры с рекомендацией к утверждению:</label>
+                <input type="file" id="protocol">
+            </div>
+            <div class="form-group2">
+                <label for="review">Рецензия(ии):</label>
+                <input type="file" id="review">
+            </div>
+            <div class="form-group2">
+                <label for="explanatory-note">Пояснительная записка:</label>
+                <input type="file" id="explanatory-note">
+            </div>
+            <div class="form-group2">
+                <label for="eumk">ЭУМК:</label>
+                <input type="file" id="eumk">
+            </div>
+            <fieldset>
+                <legend class="leg">Структура ЦУМК</legend>
+                <label><input type="checkbox"> Пояснительная записка ЦУМК</label><br>
+                <label><input type="checkbox"> Соответствие ЭУМК фактическим и формальным характеристикам</label><br>
+                <label><input type="checkbox"> Соответствие структуре ЦУМК</label><br>
+                <label><input type="checkbox"> Содержательное наполнение учебно-методическими материалами</label><br>
+                <label><input type="checkbox"> Теоретический раздел ЦУМК</label><br>
+                <label><input type="checkbox"> Практический раздел ЦУМК</label><br>
+                <label><input type="checkbox"> Раздел контроля знаний</label>
+            </fieldset>
+            <div class="form-group3">
+                <label for="comments">Замечания:</label>
+                <textarea id="comments" rows="3"></textarea>
+                <label for="conclusion">Заключение:</label>
+                <textarea id="conclusion" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" class="btn">Соответствует требованиям</button>
+                <input type="checkbox" class="btn">Не соответствует требованиям</button>
+            </div>
+            <button type="submit" class="submit-button">Отправить</button>
+        </form>
+    </div>
+    <footer>
+        <p>© 2024 ГрГУ имени Янки Купалы</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

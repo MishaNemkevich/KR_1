@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистр информационных ресурсов</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+        <div class="header-right">
+            <!-- <img src="images/language.png" alt="Language" class="language">
+            <button onclick="changeLanguage()" class="language-button">Eng</button> -->
+            <img src="images/profile.png" alt="Profile" class="profile">
+            <button onclick="goToLogin()" class="profile-button">Личный кабинет</button>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Регистр информационных ресурсов</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Введите ваш запрос" oninput="searchTable()">
+            <button onclick="searchTable()">Найти</button>
+        </div>
+        
+        <div class="filters">
+            <span class="active" onclick="filter('all')">Все(…)</span>
+            <span onclick="filter('current')">Актуальные(…)</span>
+            <span onclick="filter('excluded')">Исключенные(…)</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Номер свидетельства</th>
+                    <th>Дата регистрации</th>
+                    <th>Дата исключения</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="details.html" class="rectangle">Технологии обработки больших данных</a></td>
+                    <td>6236486</td>
+                    <td>10.11.2023</td>
+                    <td>----------</td>
+                </tr>
+                <tr>
+                    <td><a href="details.html" class="rectangle">Название 2</a></td>
+                    <td>68790823</td>
+                    <td>19.12.2024</td>
+                    <td>23.12.2024</td>
+                </tr>
+                <tr>
+                    <td><a href="details2.html" class="rectangle">Сборник типовых программ учебных дисциплин для специальности 1-31 03 03 "Прикладная математика (по направлениям)"</a></td>
+                    <td>134255695</td>
+                    <td>12.05.2022</td>
+                    <td>23.07.2024</td>
+                </tr>
+                <tr>
+                    <td><a href="details.html" class="rectangle">Название 4</a></td>
+                    <td>8673523423</td>
+                    <td>20.12.2024</td>
+                    <td>----------</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <strong>Полезные ссылки:</strong>
+            <a class="links" href="https://grsu.by" target="_blank">ГрГУ имени Янки Купалы</a> | 
+            <a class="links" href="https://support.grsu.by" target="_blank">Техническая поддержка</a> | 
+            <a class="links" href="https://policy.grsu.by" target="_blank">Политика конфиденциальности</a>
+    </footer>
+    <script>
+        function goToLogin() {
+            window.location.href = "login.html";
+        }
+    
+        function filter(type) {
+            // Удаление класса active со всех фильтров
+            const filterElements = document.querySelectorAll('.filters span');
+            filterElements.forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+    
+            // Получаем все строки таблицы
+            const rows = document.querySelectorAll('tbody tr');
+    
+            // Логика фильтрации
+            rows.forEach(row => {
+                const exclusionDate = row.cells[3].textContent.trim(); // Получаем текст из колонки "Дата исключения"
+            
+                if (type === 'all') {
+                    row.style.display = ''; // Показываем все строки
+                } else if (type === 'current') {
+                    // Показываем строки, где нет даты исключения
+                    if (exclusionDate === '' || exclusionDate === '----------' || exclusionDate === '--------------') {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                } else if (type === 'excluded') {
+                    // Показываем строки, где есть дата исключения
+                    if (exclusionDate !== '' && exclusionDate !== '----------' && exclusionDate !== '--------------') {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+            
+        }
+        function searchTable() {
+            const query = document.querySelector('.search-bar input').value.toLowerCase(); // Введенный текст
+            const rows = document.querySelectorAll('tbody tr'); // Все строки таблицы
+    
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td'); // Все ячейки строки
+                let rowVisible = false;
+    
+                // Проверяем, содержат ли ячейки введенный текст
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(query)) {
+                        rowVisible = true;
+                    }
+                });
+    
+                // Показываем или скрываем строку
+                row.style.display = rowVisible ? '' : 'none';
+            });
+        }
+        const translations = {
+            ru: {
+                title: "Регистр информационных ресурсов",
+                searchPlaceholder: "Введите ваш запрос",
+                findButton: "Найти",
+                filters: ["Все(…)", "Актуальные(…)", "Исключенные(…)"],
+                login: "Личный кабинет",
+                footer: "Ссылки"
+            },
+            en: {
+                title: "Register of Information Resources",
+                searchPlaceholder: "Enter your query",
+                findButton: "Find",
+                filters: ["All(...)", "Current(...)", "Excluded(...)"],
+                login: "Personal Account",
+                footer: "Links"
+            }
+        };
+    
+        let currentLanguage = 'ru';
+    
+        function changeLanguage() {
+            currentLanguage = currentLanguage === 'ru' ? 'en' : 'ru';
+    
+            // Обновляем тексты на странице
+            document.querySelector('h1').textContent = translations[currentLanguage].title;
+            document.querySelector('.search-bar input').setAttribute('placeholder', translations[currentLanguage].searchPlaceholder);
+            document.querySelector('.search-bar button').textContent = translations[currentLanguage].findButton;
+    
+            // Обновляем фильтры
+            const filterElements = document.querySelectorAll('.filters span');
+            filterElements[0].textContent = translations[currentLanguage].filters[0];
+            filterElements[1].textContent = translations[currentLanguage].filters[1];
+            filterElements[2].textContent = translations[currentLanguage].filters[2];
+    
+            // Обновляем кнопку Личный кабинет
+            document.querySelector('.profile-button').textContent = translations[currentLanguage].login;
+    
+            // Обновляем текст в футере
+            document.querySelector('footer').textContent = translations[currentLanguage].footer;
+    
+            // Обновляем кнопку смены языка
+            document.querySelector('.language-button').textContent = currentLanguage === 'ru' ? 'Eng' : 'Рус';
+        }
+    </script>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление сотрудника</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="add-expert.css"> <!-- Стили для этой страницы -->
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="university-name">ГрГУ имени Янки Купалы</span>
+        </div>
+    </header>
+    <main>
+        <form class="add-expert-form" onsubmit="showModal(event)">
+            <label for="employee-name" class="form-label">Введите ФИО сотрудника</label>
+            <input type="text" id="employee-name" name="employee-name" class="form-input" placeholder="ФИО" required>
+            
+            <div class="expert-preview">
+                <div class="expert-image">
+                    <img src="images/avatar.png" alt="Фото сотрудника">
+                </div>
+                <div class="expert-info">
+                    ФИО, ученая степень, наименование структурного подразделения, должность, кафедра
+                </div>
+            </div>
+            
+            <div class="page-buttons">
+                <button type="button" onclick="window.location.href='experts.html'" class="btn">К списку</button>
+                <button type="submit" class="btn">Добавить</button>
+            </div>
+        </form>
+    </main>
+    
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 ГрГУ имени Янки Купалы</p>
+    </footer>
+
+    <script>
+        // Показать модальное окно
+        function showModal(event) {
+            event.preventDefault(); // Предотвратить отправку формы
+    // Получаем значение из поля ввода
+            const employeeName = document.getElementById('employee-name').value;
+    // Устанавливаем текст модального окна
+            const modalText = document.getElementById('modal-text');
+            modalText.textContent = `${employeeName} добавлен`;
+    // Показываем модальное окно
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+        }
+// Закрыть модальное окно
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
